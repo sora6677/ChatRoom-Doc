@@ -1,6 +1,6 @@
 # ChatRoom_backend-Doc 聊天室後台
 
-## UserRegister - 註冊
+## ManagerLogin - 管理員登入
 ```
 MetHod：POST
 傳入參數：
