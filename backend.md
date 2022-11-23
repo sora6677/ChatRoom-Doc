@@ -102,6 +102,38 @@ MetHod：POST
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
 
+## GetManagerInfo - 取得管理員個人資訊
+```
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  ManagerToken(string)：身分驗證令牌
+```
+
+```
+MetHod：GET
+傳入參數：
+傳入JSON：
+傳入範例：
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object)：
+    ManagerAccount(string)：管理員帳號
+    ManagerType(int)：管理員類型 0:官方 1:大群主 2:群主 3:玩家
+    UpperId(string)：管理員上層ID
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{"ManagerAccount":"chat_user","ManagerType":0,"UpperId":0}}
+失敗範例：
+  {"status":1001,"msg":"傳入資料異常","data":{}}
+```
+
 ## GetMasterGroupList - 取大群主列表
 ```
 ***僅身分為官方的帳號可呼叫
@@ -130,13 +162,14 @@ MetHod：POST
     MasterGroupLists(object array)：大群主列表
       MasterId(string)：大群主ID
       MasterAccount(string)：大群主帳號
+      MasterType(int)：身分類型,0:官方 1:大群主 2:群主 3:會員
       UpperId(string)：大群主上層ID,官方ID
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"MasterGroupLists":[{"MasterId":"34444","MasterAccount":"test_master001","UpperId":10000},{"MasterId":"39674","MasterAccount":"test_master002","UpperId":10000}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"MasterGroupLists":[{"MasterId":"34444","MasterAccount":"test_master001","MasterType":1,"UpperId":10000},{"MasterId":"39674","MasterAccount":"test_master002","MasterType":1,"UpperId":10000}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
@@ -206,6 +239,7 @@ MetHod：POST
       GroupId(string)：群主ID
       GroupAccount(string)：群主帳號
       GroupNick(string)：群主暱稱
+      GroupType(int)：身分類型,0:官方 1:大群主 2:群主 3:會員
       ChatId(string)：聊天室ID
       UpperId(string)：群主上層ID,所屬的大群主ID
 回傳方式：JSON
@@ -213,7 +247,7 @@ MetHod：POST
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"GroupsList":[{"GroupId":"61663","GroupAccount":"test_group01","GroupNick":"group01","ChatId":"k3nhs6fovavh8hu9vheqgueu0m","UpperId":"39674"},{"GroupId":"79833","GroupAccount":"test_group02","GroupNick":"group02","ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"39674"}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"GroupsList":[{"GroupId":"61663","GroupAccount":"test_group01","GroupNick":"group01","GroupType":2,"ChatId":"k3nhs6fovavh8hu9vheqgueu0m","UpperId":"39674"},{"GroupId":"79833","GroupAccount":"test_group02","GroupNick":"group02","GroupType":2,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"39674"}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
@@ -283,9 +317,10 @@ MetHod：POST
   data(object)：
     TotalPage(int)：總頁數
     UsersList(object array)：玩家列表
-      UsersId(string)：玩家ID
-      UsersAccount(string)：玩家帳號
-      UsersNick(string)：玩家暱稱
+      UserId(string)：玩家ID
+      UserAccount(string)：玩家帳號
+      UserNick(string)：玩家暱稱
+      UserType(string)：身分類型,0:官方 1:大群主 2:群主 3:會員
       ChatId(string)：聊天室ID
       UpperId(string)：玩家上層ID,所屬的群主ID
 回傳方式：JSON
@@ -293,7 +328,7 @@ MetHod：POST
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"GroupsList":[{"GroupId":"61663","GroupAccount":"test_group01","GroupNick":"group01","ChatId":"k3nhs6fovavh8hu9vheqgueu0m","UpperId":"39674"},{"GroupId":"79833","GroupAccount":"test_group02","GroupNick":"group02","ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"39674"}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"UsersList":[{"UserId":"47988","UserAccount":"testUser02","UserNick":"userNick02","UserType":3,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"79833"},{"UserId":"69307","UserAccount":"testUser01","UserNick":"userNick01","UserType":3,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"79833"}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
