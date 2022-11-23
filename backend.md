@@ -122,7 +122,7 @@ MetHod：GET
   msg(string)：訊息
   data(object)：
     ManagerAccount(string)：管理員帳號
-    ManagerType(int)：管理員類型 0:官方 1:大群主 2:群主 3:玩家
+    ManagerType(int)：身分類型 0:官方 1:大群主 2:群主 3:玩家
     UpperId(string)：管理員上層ID
 回傳方式：JSON
 ```
