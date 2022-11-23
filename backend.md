@@ -123,12 +123,17 @@ MetHod：POST
   status(int)：代碼
   msg(string)：訊息
   data(object)：
+    TotalPage(int)：總頁數
+    MasterGroupLists(object array)：大群主列表
+      MasterId(string)：大群主ID
+      MasterAccount(string)：大群主帳號
+      UpperId(string)：大群主上層ID,官方ID
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"TotalPage":1,"MasterGroupLists":[{"ManagerId":"34444","ManagerAccount":"test_master001","UpperId":10000},{"ManagerId":"39674","ManagerAccount":"test_master002","UpperId":10000}]}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"MasterGroupLists":[{"MasterId":"34444","MasterAccount":"test_master001","UpperId":10000},{"MasterId":"39674","MasterAccount":"test_master002","UpperId":10000}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
@@ -181,7 +186,7 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  MasterGroupId(string)：要查的群主ID ***若身分為群主,傳入自己的 ManagerId
+  MasterGroupId(string)：要查的大群主ID ***若身分為大群主,傳入自己的 ManagerId
   GetLimit(int)：要取得筆數 ***最少取10筆
   GetPage(int)：要取得頁數 ***從1開始
 傳入範例：
@@ -193,18 +198,26 @@ MetHod：POST
   status(int)：代碼
   msg(string)：訊息
   data(object)：
+    TotalPage(int)：總頁數
+    GroupsList(object array)：群主列表
+      GroupId(string)：群主ID
+      GroupAccount(string)：群主帳號
+      GroupNick(string)：群主暱稱
+      ChatId(string)：聊天室ID
+      UpperId(string)：群主上層ID,所屬的大群主ID
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"GroupsList":[{"GroupId":"61663","GroupAccount":"test_group01","GroupNick":"group01","ChatId":"k3nhs6fovavh8hu9vheqgueu0m","UpperId":"39674"},{"GroupId":"79833","GroupAccount":"test_group02","GroupNick":"group02","ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"39674"}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
 
-## ManagerProduceGroupToken - 管理員產生群主加入令牌
+## CreateMasterGroup - 創建群主
 ```
+***僅身分為官方的帳號或對應的大群主可呼叫
 Header：
   ManagerId(string)：管理員 (唯一碼)
   ManagerToken(string)：身分驗證令牌
@@ -215,10 +228,13 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  UserId(int)：玩家ID (唯一碼)
-  AuthToken(string)：身分驗證令牌
+  MasterId(string)：大群主ID
+  GroupAccount(string)：群主帳號
+  GroupNick(string)：群主暱稱
+  GroupPassword(string)：群主密碼
+  ChatName(string)：聊天室名稱
 傳入範例：
-  data={"UserId":"abc","AuthToken":"test"}
+  data={"MasterId":"39674","GroupAccount":"test_group01","GroupNick":"group01","GroupPassword":"test123","ChatName":"測試群01"}
 ```
 
 ```
@@ -233,11 +249,13 @@ MetHod：POST
 成功範例：
   {"status":200,"msg":"成功","data":{}}
 失敗範例：
-  {"status":1001,"msg":"傳入資料異常","data":{}}
+  {"status":1005,"msg":"建立失敗","data":{}}
+  {"status":1101,"msg":"帳號重複","data":{}}
 ```
 
-## ManagerKickMember - 管理員禁言|解禁言會員
+## GetUsersList - 取玩家列表
 ```
+***除官方帳號外,僅同群的上層皆可呼叫
 Header：
   ManagerId(string)：管理員 (唯一碼)
   ManagerToken(string)：身分驗證令牌
@@ -248,10 +266,11 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  UserId(int)：玩家ID (唯一碼)
-  AuthToken(string)：身分驗證令牌
+  GroupId(string)：要查的群主ID ***若身分為群主,傳入自己的 ManagerId
+  GetLimit(int)：要取得筆數 ***最少取10筆
+  GetPage(int)：要取得頁數 ***從1開始
 傳入範例：
-  data={"UserId":"abc","AuthToken":"test"}
+  data={"GetLimit":10,"GetPage":1}
 ```
 
 ```
@@ -259,46 +278,19 @@ MetHod：POST
   status(int)：代碼
   msg(string)：訊息
   data(object)：
+    TotalPage(int)：總頁數
+    UsersList(object array)：玩家列表
+      UsersId(string)：玩家ID
+      UsersAccount(string)：玩家帳號
+      UsersNick(string)：玩家暱稱
+      ChatId(string)：聊天室ID
+      UpperId(string)：玩家上層ID,所屬的群主ID
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{}}
-失敗範例：
-  {"status":1001,"msg":"傳入資料異常","data":{}}
-```
-
-## ManagerLowList - 管理員下層會員列表
-```
-Header：
-  ManagerId(string)：管理員 (唯一碼)
-  ManagerToken(string)：身分驗證令牌
-```
-
-```
-***依照管理員身分顯示下層會員列表
-MetHod：POST
-傳入參數：
-  data：JSON
-傳入JSON：
-  UserId(int)：玩家ID (唯一碼)
-  AuthToken(string)：身分驗證令牌
-傳入範例：
-  data={"UserId":"abc","AuthToken":"test"}
-```
-
-```
-回傳參數：
-  status(int)：代碼
-  msg(string)：訊息
-  data(object)：
-回傳方式：JSON
-```
-
-```
-成功範例：
-  {"status":200,"msg":"成功","data":{}}
+  {"status":200,"msg":"成功","data":{"TotalPage":1,"GroupsList":[{"GroupId":"61663","GroupAccount":"test_group01","GroupNick":"group01","ChatId":"k3nhs6fovavh8hu9vheqgueu0m","UpperId":"39674"},{"GroupId":"79833","GroupAccount":"test_group02","GroupNick":"group02","ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"39674"}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
