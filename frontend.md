@@ -210,6 +210,37 @@ MetHod：POST
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
 
+## UpFile - 上傳檔案
+
+```
+URL： 依聊天室回傳的上傳網址
+Header：
+  UserId(int)：玩家ID (唯一碼)
+  AuthToken(string)：身分驗證令牌
+```
+
+```
+MetHod：POST
+Content-Type：multipart/form-data
+檔案上傳 key： UpFile
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object)：
+    FileUrl(string)：檔案網址
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{"FileUrl":"http://xxx"}}
+失敗範例：
+  {"status":1001,"msg":"傳入資料異常","data":{}}
+```
+
 ## GroupProduceToken - 群主產生加入令牌
 
 ```
