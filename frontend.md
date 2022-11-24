@@ -213,6 +213,7 @@ MetHod：POST
 ## GroupProduceToken - 群主產生加入令牌
 
 ```
+***產生之後每次取都會是同一個令牌，此令牌不會失效
 Header：
   UserId(int)：玩家ID (唯一碼)
   AuthToken(string)：身分驗證令牌
