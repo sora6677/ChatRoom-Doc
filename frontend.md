@@ -86,8 +86,6 @@ Header：
 ```
 MetHod：GET
 傳入參數：
-傳入JSON：
-傳入範例：
 ```
 
 ```
