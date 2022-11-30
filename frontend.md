@@ -133,7 +133,7 @@ MetHod：POST
     UserNick(string)：玩家暱稱
     UserType(int)：身分類型 0:官方 1:大群主 2:群主 3:玩家
     ChatId(string)：聊天室ID
-    UpperId(int)：上層帳號
+    UpperId(int)：上層ID
 回傳方式：JSON
 ```
 
