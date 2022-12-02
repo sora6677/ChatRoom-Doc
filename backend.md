@@ -252,7 +252,7 @@ MetHod：POST
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
 
-## CreateMasterGroup - 創建群主
+## CreateGroup - 創建群主
 ```
 ***僅身分為官方的帳號或對應的大群主可呼叫
 Header：
