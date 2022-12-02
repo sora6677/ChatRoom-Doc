@@ -134,12 +134,13 @@ MetHod：POST
     UserType(int)：身分類型 0:官方 1:大群主 2:群主 3:玩家
     ChatId(string)：聊天室ID
     UpperId(int)：上層ID = 上層的 UserId
+    UpperNick(string)：上層ID暱稱
 回傳方式：JSON
 ```
 
 ```
 成功範例：
-  {"status":200,"msg":"成功","data":{"UserAccount":"testUser01","UserNick":"userNick01","UserType":3,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":79833}}
+  {"status":200,"msg":"成功","data":{"UserAccount":"testUser01","UserNick":"userNick01","UserType":3,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":79833,"UpperNick":"group01"}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
 ```
