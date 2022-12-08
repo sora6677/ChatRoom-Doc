@@ -158,7 +158,7 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  NewNickName(string)：新暱稱
+  NewNickName(string)：新暱稱 **限制 12 碼以內
 傳入範例：
   data={"NewNickName":"defts"}
 ```
@@ -191,7 +191,7 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  NewPassword(string)：新密碼
+  NewPassword(string)：新密碼 **限制 12 碼以內
 傳入範例：
   data={"NewPassword":"123456"}
 ```
