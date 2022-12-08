@@ -82,7 +82,7 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  NewPassword(string)：管理員新密碼 **限制 12 碼以內
+  NewPassword(string)：管理員新密碼 **限制 12 碼以內; 僅接受英數字
 傳入範例：
   data={"NewPassword":"test123"}
 ```
@@ -187,8 +187,8 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  MasterAccount(string)：大群主帳號 **限制 12 碼以內
-  MasterPassword(string)：大群主密碼 **限制 12 碼以內
+  MasterAccount(string)：大群主帳號 **限制 12 碼以內; 僅接受英數字
+  MasterPassword(string)：大群主密碼 **限制 12 碼以內; 僅接受英數字
 傳入範例：
   data={"MasterAccount":"test_master001","MasterPassword":"test123"}
 ```
@@ -266,9 +266,9 @@ MetHod：POST
   data：JSON
 傳入JSON：
   MasterId(string)：大群主ID
-  GroupAccount(string)：群主帳號 **限制 12 碼以內
+  GroupAccount(string)：群主帳號 **限制 12 碼以內; 僅接受英數字
   GroupNick(string)：群主暱稱 **限制 12 碼以內
-  GroupPassword(string)：群主密碼 **限制 12 碼以內
+  GroupPassword(string)：群主密碼 **限制 12 碼以內; 僅接受英數字
   ChatName(string)：聊天室名稱 **限制 20 碼以內
 傳入範例：
   data={"MasterId":"39674","GroupAccount":"test_group01","GroupNick":"group01","GroupPassword":"test123","ChatName":"測試群01"}
