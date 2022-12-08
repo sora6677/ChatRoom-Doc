@@ -23,9 +23,9 @@ MetHod：POST
 傳入參數：
   data：JSON
 傳入JSON：
-  UserAccount(string)：玩家帳號
-  UserNick(string)：玩家暱稱
-  UserPassword(string)：玩家密碼
+  UserAccount(string)：玩家帳號 **限制 12 碼
+  UserNick(string)：玩家暱稱 **限制 12 碼
+  UserPassword(string)：玩家密碼 **限制 12 碼
 傳入範例：
   data={"UserAccount":"testUser02","UserNick":"userNick02","UserPassword":"test123"}
 ```
