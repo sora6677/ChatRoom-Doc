@@ -245,6 +245,7 @@ MetHod：POST
       GroupType(int)：身分類型,0:官方 1:大群主 2:群主 3:會員
       ChatId(string)：聊天室ID
       UpperId(string)：群主上層ID,所屬的大群主ID
+      LowerPerson(int)：聊天群人數
 回傳方式：JSON
 ```
 
