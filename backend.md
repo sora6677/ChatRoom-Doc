@@ -10,12 +10,6 @@
 |1003|登入令牌驗證失效|
 |1004|無此權限|
 |1005|建立失敗|
-|1101|帐号重复|
-|1102|无此帐号|
-|1103|密码错误|
-|1104|查无此ID|
-|1105|字数不符|
-|1106|需为英数字|
 
 ## ManagerLogin - 管理員登入
 ```
@@ -105,7 +99,8 @@ MetHod：POST
 成功範例：
   {"status":200,"msg":"成功","data":{}}
 失敗範例：
-  {"status":1001,"msg":"傳入資料異常","data":{}}
+  {"status":1105,"msg":"字数不符","data":{}}
+  {"status":1106,"msg":"需为英数字","data":{}}
 ```
 
 ## GetManagerInfo - 取得管理員個人資訊
@@ -213,6 +208,8 @@ MetHod：POST
 失敗範例：
   {"status":1005,"msg":"建立失敗","data":{}}
   {"status":1101,"msg":"帳號重複","data":{}}
+  {"status":1105,"msg":"字数不符","data":{}}
+  {"status":1106,"msg":"需为英数字","data":{}}
 ```
 
 ## GetGroupList - 取群主列表
@@ -255,7 +252,7 @@ MetHod：POST
 成功範例：
   {"status":200,"msg":"成功","data":{"TotalPage":1,"GroupsList":[{"GroupId":"61663","GroupAccount":"test_group01","GroupNick":"group01","GroupType":2,"ChatId":"k3nhs6fovavh8hu9vheqgueu0m","UpperId":"39674"},{"GroupId":"79833","GroupAccount":"test_group02","GroupNick":"group02","GroupType":2,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"39674"}]}}
 失敗範例：
-  {"status":1001,"msg":"傳入資料異常","data":{}}
+  {"status":1104,"msg":"查无此ID","data":{}}
 ```
 
 ## CreateGroup - 創建群主
@@ -292,8 +289,10 @@ MetHod：POST
 成功範例：
   {"status":200,"msg":"成功","data":{}}
 失敗範例：
-  {"status":1005,"msg":"建立失敗","data":{}}
   {"status":1101,"msg":"帳號重複","data":{}}
+  {"status":1104,"msg":"查无此ID","data":{}}
+  {"status":1105,"msg":"字数不符","data":{}}
+  {"status":1106,"msg":"需为英数字","data":{}}
 ```
 
 ## GetUsersList - 取玩家列表
@@ -337,4 +336,38 @@ MetHod：POST
   {"status":200,"msg":"成功","data":{"TotalPage":1,"UsersList":[{"UserId":"47988","UserAccount":"testUser02","UserNick":"userNick02","UserType":3,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"79833"},{"UserId":"69307","UserAccount":"testUser01","UserNick":"userNick01","UserType":3,"ChatId":"rcuhlhqltkan27s19g2uc4e0mk","UpperId":"79833"}]}}
 失敗範例：
   {"status":1001,"msg":"傳入資料異常","data":{}}
+```
+
+## DeleteGroup - 刪除群主
+```
+*** 目前僅官方身分登入才會顯示刪除群主
+Header：
+  ManagerId(string)：管理員 (唯一碼)
+  ManagerToken(string)：身分驗證令牌
+```
+
+```
+MetHod：POST
+傳入參數：
+  data：JSON
+傳入JSON：
+  GroupId(string)：群主ID
+傳入範例：
+  data={"GroupId":"61663"}
+```
+
+```
+回傳參數：
+  status(int)：代碼
+  msg(string)：訊息
+  data(object)：
+回傳方式：JSON
+```
+
+```
+成功範例：
+  {"status":200,"msg":"成功","data":{}}
+失敗範例：
+  {"status":1104,"msg":"查无此ID","data":{}}
+  {"status":1107,"msg":"有下层会员","data":{}}
 ```
